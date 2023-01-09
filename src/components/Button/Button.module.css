@@ -1,0 +1,29 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 30px;
+    padding: 0;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #3f51b5;
+    color: white;
+
+    cursor: pointer;
+    
+}
+
+.button:hover,
+.button:focus {
+    color: black;
+    background-color: #6471b8;
+}

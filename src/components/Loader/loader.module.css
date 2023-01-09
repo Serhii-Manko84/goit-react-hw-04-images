@@ -1,0 +1,13 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    color: tomato;
+}
+
+.loader {
+    width: 110px;
+    height: 110px;
+    fill: green;
+}
