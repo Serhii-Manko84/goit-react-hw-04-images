@@ -13,7 +13,12 @@ export class Modal extends Component {
   }
 
   handleBackdrop = event => {
-    if (event.target === event.currentTarget) {
+    console.log(event.target, 'target');
+    console.log(event.currentTarget, 'CurrentTarget');
+
+    if (event.currentTarget === event.target) {
+      //   console.log(event.target);
+      //   console.log(event.currentTarget);
       this.props.onClose();
     }
   };
