@@ -1,5 +1,5 @@
 import { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import css from '../Searchbar/Searchbar.module.css';
 
@@ -22,6 +22,7 @@ export class Searchbar extends Component {
       toast.error('Specify the query parameters');
       return;
     }
+
     onSubmit(query);
   };
 
@@ -48,6 +49,6 @@ export class Searchbar extends Component {
   }
 }
 
-// Searchbar.prototype = {
-//   onSubmit: PropTypes.func.isRequired,
-// };
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

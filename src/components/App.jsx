@@ -3,6 +3,8 @@ import { Searchbar } from '../components/Searchbar/Searchbar';
 import { ImageGallery } from '../components/ImageGallery/ImageGallery';
 import { Loader } from '../components/Loader/Loader';
 import { Button } from './Button/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { fetchImages } from './services/api';
 import css from './App.module.css';
 
@@ -12,7 +14,6 @@ export class App extends Component {
     page: 1,
     query: '',
     totalHits: null,
-    largeImageURL: '',
     isLoading: false,
     error: null,
   };
@@ -31,6 +32,13 @@ export class App extends Component {
           this.state.query,
           this.state.page
         );
+
+        if (totalHits === 0) {
+          toast.error(
+            `There is no result for your request ${this.state.query}`
+          );
+        }
+
         this.setState({
           images:
             this.state.page === 1 ? hits : [...this.state.images, ...hits],
@@ -65,6 +73,7 @@ export class App extends Component {
         {this.state.totalHits > this.state.images.length && (
           <Button onLoadMore={this.handleLoadMore} />
         )}
+        <ToastContainer />
       </div>
     );
   }
