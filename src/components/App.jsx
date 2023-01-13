@@ -15,7 +15,6 @@ export const App = () => {
   const [query, setQuery] = useState('');
   const [totalHits, setTotalHits] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getPictures = async () => {
@@ -35,7 +34,7 @@ export const App = () => {
 
         setTotalHits(totalHits);
       } catch (error) {
-        setError(error.massege);
+        toast.error(`Something went wrong ${error}`);
       } finally {
         setIsLoading(false);
       }
