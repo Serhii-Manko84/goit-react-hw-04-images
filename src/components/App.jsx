@@ -1,4 +1,4 @@
-import { Component } from 'react';
+
 import { Searchbar } from '../components/Searchbar/Searchbar';
 import { ImageGallery } from '../components/ImageGallery/ImageGallery';
 import { Loader } from '../components/Loader/Loader';
@@ -7,8 +7,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchImages } from './services/api';
 import css from './App.module.css';
+import { useState } from 'react';
 
-export class App extends Component {
+export const App =  () => {
+  const [images, setImages] = useState([]);
+  const [page, setPage] = useState(1);
+  const [query, setQuery] = useState('');
+  const [totalHits, setTotalHits] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   state = {
     images: [],
     page: 1,
@@ -56,25 +64,23 @@ export class App extends Component {
     }
   }
 
-  handleSubmit = query => {
+  const handleSubmit = query => {
     this.setState({ query, page: 1 });
   };
 
-  handleLoadMore = () => {
+  const handleLoadMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
-  render() {
     return (
       <div className={css.App}>
-        <Searchbar onSubmit={this.handleSubmit} />
+        <Searchbar onSubmit={handleSubmit} />
         <ImageGallery images={this.state.images} />
         {this.state.isLoading && <Loader />}
         {this.state.totalHits > this.state.images.length && (
-          <Button onLoadMore={this.handleLoadMore} />
+          <Button onLoadMore={handleLoadMore} />
         )}
         <ToastContainer />
       </div>
     );
   }
-}
